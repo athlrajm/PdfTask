@@ -1,0 +1,43 @@
+.home {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border: 2px solid rgb(213, 232, 216);
+    border-radius: 2rem;
+    background-color: aliceblue;
+    
+  }
+  
+  form {
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .title {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-color: black !important;
+    
+  }
+  
+  .uploaded {
+    margin-top: 20px;
+  }
+  
+  .inner-div {
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
