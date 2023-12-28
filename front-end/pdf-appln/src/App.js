@@ -1,11 +1,13 @@
 
 import './App.css';
+import Extractp from './Components/Extractp';
 import HomePage from './Components/HomePage';
 
 function App() {
   return (
     <div className="App">
-      <HomePage/>
+      <HomePage/><br></br>
+      <Extractp/>
     </div>
   );
 }

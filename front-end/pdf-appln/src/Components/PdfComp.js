@@ -6,7 +6,7 @@ function PdfComp(props) {
 
   useEffect(() => {
     if (props.PdfFile) {
-      // Load the number of pages when PdfFile changes
+      
       fetch(props.PdfFile)
         .then((response) => response.arrayBuffer())
         .then((buffer) =>

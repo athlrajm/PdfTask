@@ -6,34 +6,121 @@
     border: 2px solid rgb(213, 232, 216);
     border-radius: 2rem;
     background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form1 {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
     
   }
   
-  form {
-    margin-bottom: 20px;
-    margin-right: 20px;
+  .label1 {
+    display: row;
+    margin-right: 10px;
+    color: #c6a9a9;
+    
   }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
+  .row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    
   }
   
   .title {
-    width: 100%;
-    padding: 8px;
     margin-bottom: 10px;
-    border-color: black !important;
-    
+    padding: 8px;
+    border: 1px solid #baccd8;
+    border-radius: 4px;
+    margin-left: 5px;
+    width: 300px;
+    height: 20px;
+  }
+  .title:focus {
+    outline: none;
+    border-color: #2ecc71;
   }
   
   .uploaded {
-    margin-top: 20px;
+    margin-top: 1px;
   }
   
-  .inner-div {
-    margin-bottom: 15px;
-  }
+  
+.uploaded {
+  margin-top: 1px;
+}
+
+.output-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inner-div {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #514e4e;
+  border-radius: 4px;
+  background-color: #f4f2f5;
+}
+
+.inner-div h6 {
+  color: #232222;
+}
+.up
+{
+  color: #2980b9;
+}
+.up2{
+  color: #151414;
+}
+.inner-div button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.bt2{
+  color: #2ecc71;
+}
+
+.extract-pages {
+  margin-top: 20px;
+}
+
+.extract-pages label {
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.extract-pages button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.extract-pages a {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
   
   .btn {
     background-color: #007bff;
@@ -41,3 +128,35 @@
     padding: 8px 15px;
     cursor: pointer;
   }
+  .pdf-div{
+    
+    align-items: center;
+    justify-content: center;
+  }
+  
+element.style {
+    display: block;
+    user-select: none;
+    width: 613px;
+    height: 793px;
+}
+
+canvas.react-pdf__Page__canvas {
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    
+}
+.form1 input[type="submit"] {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form1 input[type="submit"]:hover {
+  background-color: #2980b9;
+}
