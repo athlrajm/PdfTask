@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import './HomePage.css'
+import './HomePage.css';
 
 const Extractp = () => {
   const [pdfFileData, setPdfFileData] = useState();
   const [fileList, setFileList] = useState([]);
   const [selectedPages, setSelectedPages] = useState([]);
+  const [numPages, setNumPages] = useState(0);
 
   function readFileAsync(file) {
     return new Promise((resolve, reject) => {
@@ -49,23 +50,27 @@ const Extractp = () => {
   const onFileSelected = async (e) => {
     const fileList = e.target.files;
     setFileList(e.target.files);
+
+    const pdfArrayBuffer = await readFileAsync(fileList[0]);
+    const pdfDoc = await PDFDocument.load(pdfArrayBuffer);
+    setNumPages(pdfDoc.getPageCount());
+
     setSelectedPages([]);
   };
 
   const onPageCheckboxChange = (page) => {
     const updatedSelectedPages = [...selectedPages];
-  
-    const pageIndex = page - 1; // Adjust for zero-based indexing
-  
+
+    const pageIndex = page - 1; 
+
     if (updatedSelectedPages.includes(pageIndex)) {
       updatedSelectedPages.splice(updatedSelectedPages.indexOf(pageIndex), 1);
     } else {
       updatedSelectedPages.push(pageIndex);
     }
-  
+
     setSelectedPages(updatedSelectedPages);
-  }
-  
+  };
 
   const onCreate = async () => {
     if (fileList?.length > 0) {
@@ -83,16 +88,16 @@ const Extractp = () => {
       <br></br>
       <div className='form1'>
         Select pages:
-        {[1, 2, 3, 4, 5].map((page) => (
-  <label key={page}>
-    <input
-      type="checkbox"
-      checked={selectedPages.includes(page - 1)} 
-      onChange={() => onPageCheckboxChange(page)}
-    />
-    Page {page}
-  </label>
-))}
+        {Array.from({ length: numPages }, (_, index) => index + 1).map((page) => (
+          <label key={page}>
+            <input
+              type="checkbox"
+              checked={selectedPages.includes(page - 1)}
+              onChange={() => onPageCheckboxChange(page)}
+            />
+            Page {page}
+          </label>
+        ))}
       </div>
       <button onClick={onCreate} className='btn btn-primary'>Extract</button>
       {pdfFileData && (
