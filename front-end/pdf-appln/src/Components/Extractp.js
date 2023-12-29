@@ -42,8 +42,8 @@ const Extractp = () => {
       pages.forEach((page) => pdfNewDoc.addPage(page));
       const newPdfBytes = await pdfNewDoc.save();
 
-      setExtractedPdfData(newPdfBytes); // Save extracted PDF data for download
-      renderPdf(newPdfBytes); // Render the extracted PDF
+      setExtractedPdfData(newPdfBytes); 
+      renderPdf(newPdfBytes); 
     } catch (error) {
       console.error('Error loading or processing PDF:', error);
       throw error;
@@ -59,13 +59,13 @@ const Extractp = () => {
     setNumPages(pdfDoc.getPageCount());
 
     setSelectedPages([]);
-    setExtractedPdfData(null); // Reset extracted PDF data
+    setExtractedPdfData(null); 
   };
 
   const onPageCheckboxChange = (page) => {
     const updatedSelectedPages = [...selectedPages];
 
-    const pageIndex = page - 1; // Adjust for zero-based indexing
+    const pageIndex = page - 1; 
 
     if (updatedSelectedPages.includes(pageIndex)) {
       updatedSelectedPages.splice(updatedSelectedPages.indexOf(pageIndex), 1);
