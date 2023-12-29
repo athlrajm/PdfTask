@@ -7,6 +7,7 @@ const Extractp = () => {
   const [fileList, setFileList] = useState([]);
   const [selectedPages, setSelectedPages] = useState([]);
   const [numPages, setNumPages] = useState(0);
+  const [extractedPdfData, setExtractedPdfData] = useState(null);
 
   function readFileAsync(file) {
     return new Promise((resolve, reject) => {
@@ -39,8 +40,10 @@ const Extractp = () => {
 
       const pages = await pdfNewDoc.copyPages(pdfSrcDoc, selectedPages);
       pages.forEach((page) => pdfNewDoc.addPage(page));
-      const newpdf = await pdfNewDoc.save();
-      return newpdf;
+      const newPdfBytes = await pdfNewDoc.save();
+
+      setExtractedPdfData(newPdfBytes); // Save extracted PDF data for download
+      renderPdf(newPdfBytes); // Render the extracted PDF
     } catch (error) {
       console.error('Error loading or processing PDF:', error);
       throw error;
@@ -56,12 +59,13 @@ const Extractp = () => {
     setNumPages(pdfDoc.getPageCount());
 
     setSelectedPages([]);
+    setExtractedPdfData(null); // Reset extracted PDF data
   };
 
   const onPageCheckboxChange = (page) => {
     const updatedSelectedPages = [...selectedPages];
 
-    const pageIndex = page - 1; 
+    const pageIndex = page - 1; // Adjust for zero-based indexing
 
     if (updatedSelectedPages.includes(pageIndex)) {
       updatedSelectedPages.splice(updatedSelectedPages.indexOf(pageIndex), 1);
@@ -75,8 +79,17 @@ const Extractp = () => {
   const onCreate = async () => {
     if (fileList?.length > 0) {
       const pdfArrayBuffer = await readFileAsync(fileList[0]);
-      const newPdfDoc = await extractPdfPage(pdfArrayBuffer, selectedPages);
-      renderPdf(newPdfDoc);
+      await extractPdfPage(pdfArrayBuffer, selectedPages);
+    }
+  };
+
+  const onDownload = () => {
+    if (extractedPdfData) {
+      const blob = new Blob([extractedPdfData], { type: 'application/pdf' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'extracted.pdf';
+      link.click();
     }
   };
 
@@ -99,7 +112,12 @@ const Extractp = () => {
           </label>
         ))}
       </div>
-      <button onClick={onCreate} className='btn btn-primary'>Extract</button>
+      <button onClick={onCreate} className='btn btn-primary'>
+        Extract
+      </button><br></br>
+      <button onClick={onDownload} className='btn btn-secondary' disabled={!extractedPdfData}>
+        Download Extracted PDF
+      </button><br></br>
       {pdfFileData && (
         <embed src={pdfFileData} type="application/pdf" width="100%" height="600px" />
       )}

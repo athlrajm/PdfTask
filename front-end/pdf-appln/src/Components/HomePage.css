@@ -123,10 +123,12 @@
 }
   
   .btn {
-    background-color: #007bff;
+    background-color: #2bc379;
     color: #fff;
     padding: 8px 15px;
     cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgb(242, 237, 237);
   }
   .pdf-div{
     
