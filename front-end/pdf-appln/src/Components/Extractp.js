@@ -54,15 +54,18 @@ const Extractp = () => {
 
   const onPageCheckboxChange = (page) => {
     const updatedSelectedPages = [...selectedPages];
-
-    if (updatedSelectedPages.includes(page)) {
-      updatedSelectedPages.splice(updatedSelectedPages.indexOf(page), 1);
+  
+    const pageIndex = page - 1; // Adjust for zero-based indexing
+  
+    if (updatedSelectedPages.includes(pageIndex)) {
+      updatedSelectedPages.splice(updatedSelectedPages.indexOf(pageIndex), 1);
     } else {
-      updatedSelectedPages.push(page);
+      updatedSelectedPages.push(pageIndex);
     }
-
+  
     setSelectedPages(updatedSelectedPages);
-  };
+  }
+  
 
   const onCreate = async () => {
     if (fileList?.length > 0) {
@@ -81,15 +84,15 @@ const Extractp = () => {
       <div className='form1'>
         Select pages:
         {[1, 2, 3, 4, 5].map((page) => (
-          <label key={page}>
-            <input
-              type="checkbox"
-              checked={selectedPages.includes(page)}
-              onChange={() => onPageCheckboxChange(page)}
-            />
-            Page {page}
-          </label>
-        ))}
+  <label key={page}>
+    <input
+      type="checkbox"
+      checked={selectedPages.includes(page - 1)} 
+      onChange={() => onPageCheckboxChange(page)}
+    />
+    Page {page}
+  </label>
+))}
       </div>
       <button onClick={onCreate} className='btn btn-primary'>Extract</button>
       {pdfFileData && (
