@@ -162,3 +162,19 @@ canvas.react-pdf__Page__canvas {
 .form1 input[type="submit"]:hover {
   background-color: #2980b9;
 }
+@media screen and (max-width: 600px) {
+  .title {
+    width: 100%; 
+  }
+
+  .home {
+    padding: 10px; 
+  }
+
+  .form1 {
+    margin-right: 10px; 
+  }
+  .inner-div button {
+    margin-top: 10px; 
+  }
+}
